@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" >
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Home </title>
+        <style>
+        textarea { 
+          
+          outline: none; 
+          height: 900px;
+          width: 700px;
+          min-height: 200px;
+          max-height: 500px;
+          resize: vertical;
+
+                   }
+        body {
+          font-family: "Century Gothic", 'Lato', sans-serif;
+      }
+      
+      a {
+        text-decoration: none;
+      }
+    
+
+
+    &.btn-1 {
+    background-color: #180901;
+    box-shadow: 0 6px darken(#f79159, 10%);
+    transition: none; -->
+
+    &:hover {
+      box-shadow: 0 4px darken(#f79159, 10%);
+      top: 2px;
+    }
+  }
+      .et-hero-tabs,
+      .et-slide {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          position: relative;
+          background: #eee;
+          text-align: center;
+          padding: 0 2em;
+          h1 {
+              font-size: 2rem;
+              margin: 0;
+              letter-spacing: 1rem;
+          }
+          h3 {
+              font-size: 1rem;
+              letter-spacing: 0.3rem;
+              opacity: 0.6;
+          }
+      }
+      
+      .et-hero-tabs-container {
+          display: flex;
+          flex-direction: row;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 70px;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+          background: #fff;
+          z-index: 10;
+          &--top {
+              position: fixed;
+              top: 0;
+          }
+      }
+      
+      .et-hero-tab {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+          color: #000;
+          letter-spacing: 0.1rem;
+          transition: all 0.5s ease;
+          font-size: 0.8rem;
+
+          &:hover {
+            color:white;
+            background: rgba(102,177,241,0.8);
+            transition: all 0.5s ease;
+          }
+      }
+      
+      .et-hero-tab-slider {
+          position: absolute;
+          bottom: 0;
+          width: 0;
+          height: 6px;
+          background: #66B1F1;
+          transition: left 0.3s ease;
+      }
+      
+      @media (min-width: 800px) {
+        .et-hero-tabs,
+        .et-slide {
+          h1 {
+              font-size: 3rem;
+          }
+          h3 {
+              font-size: 1rem;
+          }
+        }
+        .et-hero-tab {
+          font-size: 1rem;
+        }
+      }
+        
+        
+        </style>
+    </head>
+    <body> 
+
+      <div class="et-hero-tabs-container">
+        <a class="et-hero-tab" href="#tab-dashboard">Dashboard</a>
+        <a class="et-hero-tab" href="#tab-myfiles">MyFiles</a>
+        <a class="et-hero-tab" href="#tab-pomodoro">Pomodoro</a>
+        <a class="et-hero-tab" href="#tab-about">About</a>
+        <a class="et-hero-tab" href="#tab-help">Help</a>
+        <span class="et-hero-tab-slider"></span>
+      </div>
+
+      
+      <h1> WELCOME, DERA</h1>
+      <form text-align="right"  name="form1" method="post" action="log_out.php">
+        <label>
+        <input name="submit2" type="submit" id="submit2" value="log out">
+        </label>
+      </form>
+      
+        
+       
+
+      
+          
+          <!-- Main -->
+          
+            <section class="et-slide" id="tab-dashboard">
+              <h1>Dashboard</h1>
+              <h3>Let's do something!</h3>
+              <h3> First, upload or paste file</h3>
+
+            </section>
+            <section class="textarea">
+              <form>
+              <textarea name="comments" cols="60" rows="25" placeholder="Paste text" ></textarea><br>
+              <input type="file" name="user-file" id="file" />
+              <!--<label for="file" class="btn-1"></label>  </form>-->
+              </section>
+            
+
+            <section class="et-slide" id="tab-myfiles">
+              <h1>MyFiles</h1>
+              <h3>Saved files</h3>
+              <h3></h3>
+            </section>
+            
+            <section class="et-slide" id="tab-pomodoro">
+              <h1>Pomodoro</h1>
+              <h3>Enjoy convenient study sessions!</h3>
+              <h3>Set Timer</h3><button>Start</button>
+
+            </section>
+            <section class="et-slide" id="tab-about">
+              <h1>About</h1>
+              <h3>Our system is specifically designed for: </h3>
+              <!--Research, Personal Study, Exam preparation -->
+            </section>
+            <section class="et-slide" id="tab-help">
+              <h1>Need help?</h1>
+              <h3>Watch this demo</h3>
+            </section>
+          </main>
+    </body>
+
+
+
+</html>
