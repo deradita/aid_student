@@ -60,7 +60,7 @@ class SubjectiveTest:
                     else:
                         question_answer_dict[temp] += sentence
         keyword_list = list(question_answer_dict.keys())
-        question_answer = list()
+        question_answer = []
         for _ in range(int(self.noOfQues)):
             rand_num = np.random.randint(0, len(keyword_list))
             selected_key = keyword_list[rand_num]
@@ -68,8 +68,8 @@ class SubjectiveTest:
             rand_num %= 4
             question = self.question_pattern[rand_num] + selected_key + "."
             question_answer.append({"Question": question, "Answer": answer})
-        que = list()
-        ans = list()
+        que = []
+        ans = []
         while len(que) < int(self.noOfQues):
             rand_num = np.random.randint(0, len(question_answer))
             if question_answer[rand_num]["Question"] not in que:
