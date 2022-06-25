@@ -3,6 +3,7 @@ import nltk
 import numpy as np
 from nltk.corpus import wordnet as wn
 nltk.download('averaged_perceptron_tagger')
+nltk.download("punkt")
 
 class ObjectiveTest:
 
@@ -13,7 +14,7 @@ class ObjectiveTest:
 
     def get_trivial_sentences(self):
         sentences = nltk.sent_tokenize(self.summary)
-        trivial_sentences = list()
+        trivial_sentences = []
         for sent in sentences:
             trivial = self.identify_trivial_sentences(sent)
             if trivial:
@@ -23,7 +24,8 @@ class ObjectiveTest:
         return trivial_sentences
 
     def identify_trivial_sentences(self, sentence):
-        tags = nltk.pos_tag(sentence)
+        tok_sent = nltk.word_tokenize(sentence)
+        tags = nltk.pos_tag(tok_sent)
         if tags[0][1] == "RB" or len(nltk.word_tokenize(sentence)) < 4:
             return None
             
@@ -52,7 +54,7 @@ class ObjectiveTest:
             for phrase in noun_phrases:
                 if phrase[0] == '\'':
                     break
-                if word in phrase:
+                if word[0] in phrase:
                     [replace_nouns.append(phrase_word) for phrase_word in phrase.split()[-2:]]
                     break
             if len(replace_nouns) == 0:
@@ -108,14 +110,14 @@ class ObjectiveTest:
 
     def generate_test(self):
         trivial_pair = self.get_trivial_sentences()
-        question_answer = list()
+        question_answer = []
         for que_ans_dict in trivial_pair:
-            if que_ans_dict["Key"] > int(self.noOfQues):
+            if que_ans_dict["Key"] < int(self.noOfQues):
                 question_answer.append(que_ans_dict)
             else:
                 continue
-        question = list()
-        answer = list()
+        question = []
+        answer = []
         while len(question) < int(self.noOfQues):
             rand_num = np.random.randint(0, len(question_answer))
             if question_answer[rand_num]["Question"] not in question:
