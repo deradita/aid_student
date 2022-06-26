@@ -48,21 +48,32 @@ class ObjectiveTest:
                     temp += " "
                 temp = temp.strip()
                 noun_phrases.append(temp)
-            
-        replace_nouns = []
-        for word, _ in tags:
-            for phrase in noun_phrases:
-                if phrase[0] == '\'':
-                    break
-                if word[0] in phrase:
-                    [replace_nouns.append(phrase_word) for phrase_word in phrase.split()[-2:]]
-                    break
-            if len(replace_nouns) == 0:
+        tag_word = []
+        tag = []
+        for i in tags:
+            tag_word.append(i[0])
+            tag.append(i[1])
+        tag_dict = dict(zip(tag_word,tag))
+        replace_nouns= []
+        k =  ' '.join(noun_phrases).split()
+        for word in k:
+            if tag_dict[word] in tag_dict.values():
                 replace_nouns.append(word)
-            break
+                break           
+#         replace_nouns = []
+#         for word, _ in tags:
+#             for phrase in noun_phrases:
+#                 if phrase[0] == '\'':
+#                     break
+#                 if word[0] in phrase:
+#                     [replace_nouns.append(phrase_word) for phrase_word in phrase.split()[-2:]]
+#                     break
+#             if len(replace_nouns) == 0:
+#                 replace_nouns.append(word)
+#             break
             
-        if len(replace_nouns) == 0:
-            return None
+#         if len(replace_nouns) == 0:
+#             return None
             
         val = 99
         for i in replace_nouns:
@@ -78,15 +89,17 @@ class ObjectiveTest:
 
         if len(replace_nouns) == 1:
             trivial["Similar"] = self.answer_options(replace_nouns[0])
+            if len(trivial["Similar"]) == 0:
+                trivial["Similar"]='No Matches'
         else:
             trivial["Similar"] = []
-            
-        replace_phrase = " ".join(replace_nouns)
-        blanks_phrase = ("__________" * len(replace_nouns)).strip()
-        expression = re.compile(re.escape(replace_phrase), re.IGNORECASE)
-        sentence = expression.sub(blanks_phrase, str(sentence), count=1)
-        trivial["Question"] = sentence
-        return trivial
+        if len(replace_nouns) == 1:   
+            replace_phrase = " ".join(replace_nouns)
+            blanks_phrase = ("__________" * len(replace_nouns)).strip()
+            expression = re.compile(re.escape(replace_phrase), re.IGNORECASE)
+            sentence = expression.sub(blanks_phrase, str(sentence), count=1)
+            trivial["Question"] = sentence
+            return trivial
 
     @staticmethod
     def answer_options(word):
@@ -112,7 +125,7 @@ class ObjectiveTest:
         trivial_pair = self.get_trivial_sentences()
         question_answer = []
         for que_ans_dict in trivial_pair:
-            if que_ans_dict["Key"] < int(self.noOfQues):
+            if que_ans_dict["Key"] < int(12):
                 question_answer.append(que_ans_dict)
             else:
                 continue
